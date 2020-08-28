@@ -9,3 +9,11 @@ export const getTopics = () => {
     return topics.data.topics;
   });
 };
+
+export const getArticles = (topic) => {
+  return axiosInstance
+    .get("/articles", { params: { topic } })
+    .then((articles) => {
+      return articles.data.articles;
+    });
+};

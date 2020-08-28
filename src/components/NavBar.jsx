@@ -18,10 +18,12 @@ class NavBar extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <nav>
+      <nav className="navBar">
+        <p> Select from the topics below</p>
         {topics.map((topic) => {
+          console.log(topic);
           return (
-            <Link to="/topics/:topic">
+            <Link to={`/articles/${topic.slug}`}>
               <button>{topic.slug}</button>
             </Link>
           );

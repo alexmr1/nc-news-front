@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 export const Header = () => {
   return (
     <>
-      <header>
+      <header key="header">
         <h1>AMR News Website</h1>
       </header>
       <NavBar />
