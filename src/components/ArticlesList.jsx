@@ -3,10 +3,10 @@ import React from "react";
 const ArticlesList = ({ articles }) => {
   return (
     <section>
-      <ul className="articlesList">
+      <ul key="articlesList" className="articlesList">
         {articles.map((article) => {
           return (
-            <li key={article.title} className="articlesList">
+            <li key={article.title} className="indArticle">
               <h3>Title: {article.title}</h3>
               <h3>Author: {article.author}</h3>
               <h4>Topic: {article.topic}</h4>

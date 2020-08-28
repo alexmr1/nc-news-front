@@ -21,9 +21,8 @@ class NavBar extends Component {
       <nav className="navBar">
         <p> Select from the topics below</p>
         {topics.map((topic) => {
-          console.log(topic);
           return (
-            <Link to={`/articles/${topic.slug}`}>
+            <Link key={topic.slug} to={`/articles/${topic.slug}`}>
               <button>{topic.slug}</button>
             </Link>
           );

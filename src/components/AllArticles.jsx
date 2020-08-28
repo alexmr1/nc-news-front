@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import ArticlesList from "./ArticlesList";
+import { Link } from "@reach/router";
 
 class AllArticles extends Component {
   state = { articles: [] };
@@ -26,7 +27,15 @@ class AllArticles extends Component {
   render() {
     const { articles } = this.state;
 
-    return <ArticlesList articles={articles} />;
+    return (
+      <main>
+        <section>
+          Sort by: <Link to="/articles/:author">Author</Link>{" "}
+          <Link to="/articles/:sort_by">Date Created</Link>
+        </section>
+        <ArticlesList articles={articles} />
+      </main>
+    );
   }
 }
 
