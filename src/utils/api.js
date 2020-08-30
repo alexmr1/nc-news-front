@@ -10,9 +10,9 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic) => {
+export const getArticles = (sort_by, topic) => {
   return axiosInstance
-    .get("/articles", { params: { topic } })
+    .get("/articles", { params: { sort_by, topic } })
     .then((articles) => {
       return articles.data.articles;
     });

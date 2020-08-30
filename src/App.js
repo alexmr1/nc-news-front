@@ -14,6 +14,8 @@ function App() {
         <HomePage path="/" />
         <AllArticles path="/articles" />
         <AllArticles path="/articles/:topic" />
+        <AllArticles path="/articles/topic/:sort_by" />
+        {/* <AllArticles path="/articles/:sort_by" /> */}
       </Router>
     </div>
   );
