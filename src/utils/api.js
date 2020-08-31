@@ -23,3 +23,9 @@ export const getArticleById = (id) => {
     return article.data.article;
   });
 };
+
+export const getArticleCommentsById = (id) => {
+  return axiosInstance.get(`articles/${id}/comments`).then((comments) => {
+    return comments.data.comments;
+  });
+};

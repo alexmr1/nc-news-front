@@ -54,7 +54,7 @@ class AllArticles extends Component {
           </Link>{" "}
           <Link to={`/articles/${this.props.topic}/votes`}> Votes</Link>{" "}
         </section>
-        {this.props.children}
+        {/* {this.props.children} */}
         <ArticlesListCard articles={articles} />
       </main>
     );

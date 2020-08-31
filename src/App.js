@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import { Router } from "@reach/router";
 import AllArticles from "./components/AllArticles";
 import SingleArticle from "./components/SingleArticle";
+import ArticleComments from "./components/ArticleComments";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <AllArticles path="/articles" />
         <AllArticles path="/articles/:topic" />
         <AllArticles path="/articles/:topic/:sort_by" />
-        <SingleArticle path="/articles/article/:id" />
+        <SingleArticle path="/articles/article/:id"></SingleArticle>
+        <ArticleComments path="/articles/article/:id/comments" />
       </Router>
     </div>
   );
