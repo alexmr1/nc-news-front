@@ -32,10 +32,11 @@ class SingleArticle extends Component {
         <h5>
           {" "}
           Comments: {article.comments_count}{" "}
-          <Link to={`/articles/article/${article.article_id}/comments`}>
+          <Link to={`/article/${article.article_id}/comments`}>
             <button>View Comments</button>
           </Link>
         </h5>{" "}
+        {this.props.children}
       </div>
     );
   }

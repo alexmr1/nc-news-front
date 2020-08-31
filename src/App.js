@@ -17,8 +17,9 @@ function App() {
         <AllArticles path="/articles" />
         <AllArticles path="/articles/:topic" />
         <AllArticles path="/articles/:topic/:sort_by" />
-        <SingleArticle path="/articles/article/:id"></SingleArticle>
-        <ArticleComments path="/articles/article/:id/comments" />
+        <SingleArticle path="/article/:id">
+          <ArticleComments path="/comments" />
+        </SingleArticle>
       </Router>
     </div>
   );

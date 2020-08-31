@@ -8,7 +8,7 @@ const ArticlesListCard = ({ articles }) => {
         {articles.map((article) => {
           return (
             <li key={article.title} className="indArticle">
-              <Link to={`/articles/article/${article.article_id}`}>
+              <Link to={`/article/${article.article_id}`}>
                 <h3>Title: {article.title} </h3>
               </Link>
               <h3>Author: {article.author}</h3>
