@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "@reach/router";
 
-const ArticlesList = ({ articles }) => {
+const ArticlesListCard = ({ articles }) => {
   return (
     <section>
       <ul key="articlesList" className="articlesList">
         {articles.map((article) => {
           return (
             <li key={article.title} className="indArticle">
-              <h3>Title: {article.title}</h3>
+              <Link to={`/articles/article/${article.article_id}`}>
+                <h3>Title: {article.title} </h3>
+              </Link>
               <h3>Author: {article.author}</h3>
               <h4>Topic: {article.topic}</h4>
               <h5>Votes: {article.votes}</h5>
@@ -21,4 +24,4 @@ const ArticlesList = ({ articles }) => {
   );
 };
 
-export default ArticlesList;
+export default ArticlesListCard;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import ArticlesList from "./ArticlesList";
+import ArticlesListCard from "./ArticlesListCard";
+
 import { Link } from "@reach/router";
 
 class AllArticles extends Component {
@@ -8,13 +9,11 @@ class AllArticles extends Component {
 
   componentDidMount() {
     this.getArticles().then((articles) => {
-      this.setState({ articles: articles.parsedArticles });
+      this.setState({ articles: articles.parsedArticles, isLoading: false });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-    console.log(prevProps);
     if (
       prevProps.topic !== this.props.topic ||
       prevState.topic !== this.props.topic ||
@@ -32,23 +31,31 @@ class AllArticles extends Component {
 
   getArticles = (props) => {
     // console.log(this.props);
-    const { sort_by, topic } = this.props;
-    return api.getArticles(sort_by, topic);
+    const { topic, sort_by } = this.props;
+    return api.getArticles(topic, sort_by);
   };
 
   render() {
     const { articles, isLoading } = this.state;
 
     if (isLoading) return <h3> Articles fetching in progress!</h3>;
+
     return (
       <main>
         <section>
-          Sort by: <Link to="/articles/topic/author">Author</Link>{" "}
-          <Link to="/articles/topic/created_at">Date-Created</Link>{" "}
-          <Link to="/articles/topic/comment_count"> Comments No.</Link>{" "}
-          <Link to="/articles/topic/votes"> Votes</Link>{" "}
+          Sort by:{" "}
+          <Link to={`/articles/${this.props.topic}/author`}>Author</Link>{" "}
+          <Link to={`/articles/${this.props.topic}/created_at`}>
+            Date-Created
+          </Link>{" "}
+          <Link to={`/articles/${this.props.topic}/comment_count`}>
+            {" "}
+            Comments No.
+          </Link>{" "}
+          <Link to={`/articles/${this.props.topic}/votes`}> Votes</Link>{" "}
         </section>
-        <ArticlesList articles={articles} />
+        {this.props.children}
+        <ArticlesListCard articles={articles} />
       </main>
     );
   }
