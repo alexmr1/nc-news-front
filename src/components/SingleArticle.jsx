@@ -25,17 +25,19 @@ class SingleArticle extends Component {
     if (isLoading) return <h3> Article details are gathered!</h3>;
     return (
       <div>
-        <h3>{article.title}</h3>
-        <h4>Author: {article.author}</h4>
-        <p>{article.body}</p>
-        <h4>Votes: {article.votes}</h4>
-        <h5>
-          {" "}
-          Comments: {article.comments_count}{" "}
-          <Link to={`/article/${article.article_id}/comments`}>
-            <button>View Comments</button>
-          </Link>
-        </h5>{" "}
+        <section className="singleArticle">
+          <h3>{article.title}</h3>
+          <h4>Author: {article.author}</h4>
+          <p>{article.body}</p>
+          <h4>Votes: {article.votes}</h4>
+          <h5>
+            {" "}
+            Comments: {article.comments_count}{" "}
+            <Link to={`/article/${article.article_id}/comments`}>
+              <button>View Comments</button>
+            </Link>
+          </h5>{" "}
+        </section>
         {this.props.children}
       </div>
     );
