@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import ArticlesListCard from "./ArticlesListCard";
 
-import { Link } from "@reach/router";
-
 class AllArticles extends Component {
   state = { articles: [], isLoading: true, sort_by: "created_at" };
 
@@ -43,15 +41,27 @@ class AllArticles extends Component {
       <main>
         <section>
           Sort by:{" "}
-          <button onClick={() => this.handleClick("created_at")}>
+          <button
+            className="sortButton"
+            onClick={() => this.handleClick("created_at")}
+          >
             {" "}
             Published Date{" "}
           </button>
-          <button onClick={() => this.handleClick("comment_count")}>
+          <button
+            className="sortButton"
+            onClick={() => this.handleClick("comment_count")}
+          >
             {" "}
             Comment No.{" "}
           </button>
-          <button onClick={() => this.handleClick("votes")}> Vote </button>
+          <button
+            className="sortButton"
+            onClick={() => this.handleClick("votes")}
+          >
+            {" "}
+            Vote{" "}
+          </button>
         </section>
         {/* {this.props.children} */}
         <ArticlesListCard articles={articles} />

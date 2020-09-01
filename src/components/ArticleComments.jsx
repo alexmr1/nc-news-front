@@ -17,16 +17,25 @@ class ArticleComments extends Component {
     return api.getArticleCommentsById(id);
   };
 
+  addComment = (newComment) => {
+    this.setState((currentState) => {
+      return { comments: [newComment, ...currentState.comments] };
+    });
+  };
+
   render() {
     const { comments, isLoading } = this.state;
     if (isLoading) return <h4>Comments are loading!</h4>;
-    console.log(comments);
+    // console.log(this.props.id);
     return (
       <div>
         <React.Fragment>
-          <PostComment />
+          <PostComment
+            addComment={this.addComment}
+            article_id={this.props.id}
+          />
         </React.Fragment>
-        <CommentsCard comments={this.state.comments} />
+        <CommentsCard comments={comments} />
       </div>
     );
   }

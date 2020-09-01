@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import * as api from "../utils/api";
 
 class PostComment extends Component {
   state = {
-    usernameInput: "",
+    // usernameInput: "",
     bodyInput: "",
   };
 
@@ -10,14 +11,11 @@ class PostComment extends Component {
     return (
       <div>
         <h5> Post a new comment!</h5>
-        <form onSubmit={this.handleOnSubmit}>
-          <label htmlFor="usernameInput">Username:</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            id="usernameInput"
-            name="usernameInput"
-          />
+        <p>
+          You are currently logged in as: grumpy19. Please write your comment
+          below!
+        </p>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="bodyInput">Body:</label>
           <input
             onChange={this.handleChange}
@@ -33,7 +31,15 @@ class PostComment extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { bodyInput } = event.target;
+    const { article_id } = this.props;
+    api.postComment(bodyInput, article_id).then((comment) => {
+      console.log(comment);
+      this.props.addComment(comment);
+    });
   };
 }
 

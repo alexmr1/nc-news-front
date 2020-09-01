@@ -25,6 +25,16 @@ ul {
   text-transform: capitalize;
 }
 
+.sortButton {
+  border: solid;
+  border-width: 0.12em;
+  border-radius: 0.2em;
+  border-color: salmon;
+  text-align: center;
+  margin: 5px;
+  text-transform: capitalize;
+}
+
 .indvComment {
   border: dotted;
   border-color: rgb(51, 71, 223);

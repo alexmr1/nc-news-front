@@ -29,3 +29,16 @@ export const getArticleCommentsById = (id) => {
     return comments.data.comments;
   });
 };
+
+export const postComment = (bodyInput, article_id) => {
+  console.log(bodyInput.value);
+  return axiosInstance
+    .post(`articles/${article_id}/comments`, {
+      username: "grumpy19",
+      body: bodyInput.value,
+    })
+    .then(({ data: { comment } }) => {
+      console.log(comment);
+      return comment;
+    });
+};
