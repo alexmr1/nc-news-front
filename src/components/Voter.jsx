@@ -5,7 +5,7 @@ class Voter extends Component {
   state = { optimisticVotes: 0, status: "" };
 
   handleVote = (vote) => {
-    api.patchVotes(this.props.article_id, vote, this.props.type);
+    api.patchVotes(this.props.id, vote, this.props.type);
     this.setState((currentState) => {
       return { optimisticVotes: currentState.optimisticVotes + vote };
     });
@@ -43,7 +43,7 @@ class Voter extends Component {
           </span>
           Nah!
         </button>
-        Liked/Nah!: {this.state.status}
+        Likelihood: {this.state.status}
       </section>
     );
   }

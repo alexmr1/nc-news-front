@@ -1,6 +1,9 @@
 import React from "react";
+import Voter from "./Voter";
 
 const CommentsCard = ({ comments }) => {
+  // console.log(comments);
+
   return (
     <section>
       <ul key="commentsList" className="commentsList">
@@ -10,9 +13,14 @@ const CommentsCard = ({ comments }) => {
               <h5>Comment:</h5>
               <p>{comment.body}</p>
               <p>
-                Author: {comment.author} Published: {comment.created_at} Votes:{" "}
-                {comment.votes}
+                Author: {comment.author} Published: {comment.created_at}
+                Votes: {comment.votes}
               </p>
+              <Voter
+                id={comment.comment_id}
+                votes={comment.votes}
+                type={"comments"}
+              />
               {/* <button> Delete </button>; */}
             </li>
           );

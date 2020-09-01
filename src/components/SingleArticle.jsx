@@ -31,7 +31,7 @@ class SingleArticle extends Component {
           <p>{article.body}</p>
           <h4>Votes: {article.votes}</h4>
           <Voter
-            article_id={article.article_id}
+            id={article.article_id}
             votes={article.votes}
             type={"articles"}
           />
