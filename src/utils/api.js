@@ -46,6 +46,6 @@ export const postComment = (bodyInput, article_id) => {
 export const patchVotes = (article_id, vote, type) => {
   console.log(vote);
   return axiosInstance
-    .patch(`/${type}/${article_id}`, { vote })
+    .patch(`/${type}/${article_id}`, { inc_votes: vote })
     .then(({ data }) => console.log(data));
 };

@@ -11,19 +11,17 @@ class Voter extends Component {
     });
   };
   render() {
-    const { votes } = this.props;
-    const { optimisticVotes, status } = this.state;
+    // const { votes } = this.props;
+    const { status } = this.state;
     return (
       <section>
         <button
-          onClick={
-            (() => {
-              this.handleVote(1);
-            },
-            () => {
-              this.setState({ status: "Liked" });
-            })
-          }
+          onClick={(event) => {
+            this.handleVote(1);
+            this.setState({ status: "Liked" });
+          }}
+          // this.setState({ status: "Liked" });
+
           disabled={status === "Liked"}
         >
           {" "}
@@ -33,23 +31,19 @@ class Voter extends Component {
           Like!
         </button>
         <button
-          onClick={
-            (() => {
-              this.handleVote(-1);
-            },
-            () => {
-              this.setState({ status: "Nah!" });
-            })
-          }
+          onClick={() => {
+            this.handleVote(-1);
+            this.setState({ status: "Nah!" });
+          }}
           disabled={status === "Nah!"}
         >
           {" "}
           <span role="img" aria-label="hand with finger pointing down">
             👇{" "}
           </span>
-          Dislike!
+          Nah!
         </button>
-        Liked/Disliked: {this.state.status}
+        Liked/Nah!: {this.state.status}
       </section>
     );
   }
