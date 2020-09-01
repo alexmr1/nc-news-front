@@ -1,7 +1,6 @@
 import React from "react";
 
 const CommentsCard = ({ comments }) => {
-  console.log(comments);
   return (
     <section>
       <ul key="commentsList" className="commentsList">
@@ -14,6 +13,7 @@ const CommentsCard = ({ comments }) => {
                 Author: {comment.author} Published: {comment.created_at} Votes:{" "}
                 {comment.votes}
               </p>
+              {/* <button> Delete </button>; */}
             </li>
           );
         })}

@@ -33,7 +33,7 @@ class ArticleComments extends Component {
           <PostComment
             addComment={this.addComment}
             article_id={this.props.id}
-          />
+          ></PostComment>
         </React.Fragment>
         <CommentsCard comments={comments} />
       </div>

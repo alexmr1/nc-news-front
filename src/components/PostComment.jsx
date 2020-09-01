@@ -3,7 +3,6 @@ import * as api from "../utils/api";
 
 class PostComment extends Component {
   state = {
-    // usernameInput: "",
     bodyInput: "",
   };
 
@@ -16,7 +15,9 @@ class PostComment extends Component {
           below!
         </p>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="bodyInput">Body:</label>
+          <label className="commentBody" htmlFor="bodyInput">
+            Body:
+          </label>
           <input
             onChange={this.handleChange}
             type="text"
@@ -25,6 +26,7 @@ class PostComment extends Component {
           />
           <button type="submit"> Post Comment </button>
         </form>
+        {/* <button> Delete</button> */}
       </div>
     );
   }
@@ -37,8 +39,8 @@ class PostComment extends Component {
     const { bodyInput } = event.target;
     const { article_id } = this.props;
     api.postComment(bodyInput, article_id).then((comment) => {
-      console.log(comment);
       this.props.addComment(comment);
+      this.setState({ bodyInput: "" });
     });
   };
 }

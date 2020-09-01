@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
+import Voter from "./Voter";
 
 class SingleArticle extends Component {
   state = { article: [], isLoading: true, id: "" };
 
   componentDidMount() {
-    console.log(this.props);
     this.getArticleById(this.props.id).then((article) => {
       this.setState({ article, isLoading: false, id: this.props.id });
     });
@@ -30,6 +30,11 @@ class SingleArticle extends Component {
           <h4>Author: {article.author}</h4>
           <p>{article.body}</p>
           <h4>Votes: {article.votes}</h4>
+          <Voter
+            article_id={article.article_id}
+            votes={article.votes}
+            type={"articles"}
+          />
           <h5>
             {" "}
             Comments: {article.comments_count}{" "}
