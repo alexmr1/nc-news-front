@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import CommentsCard from "./CommentsCard";
+import PostComment from "./PostComment";
 
 class ArticleComments extends Component {
   state = { comments: [], isLoading: true };
@@ -22,6 +23,9 @@ class ArticleComments extends Component {
     console.log(comments);
     return (
       <div>
+        <React.Fragment>
+          <PostComment />
+        </React.Fragment>
         <CommentsCard comments={this.state.comments} />
       </div>
     );

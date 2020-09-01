@@ -16,7 +16,6 @@ function App() {
         <HomePage path="/" />
         <AllArticles path="/articles" />
         <AllArticles path="/articles/:topic" />
-        <AllArticles path="/articles/:topic/:sort_by" />
         <SingleArticle path="/article/:id">
           <ArticleComments path="/comments" />
         </SingleArticle>

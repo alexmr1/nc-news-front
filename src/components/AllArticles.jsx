@@ -5,7 +5,7 @@ import ArticlesListCard from "./ArticlesListCard";
 import { Link } from "@reach/router";
 
 class AllArticles extends Component {
-  state = { articles: [], isLoading: true, topic: "" };
+  state = { articles: [], isLoading: true, sort_by: "created_at" };
 
   componentDidMount() {
     this.getArticles().then((articles) => {
@@ -16,14 +16,12 @@ class AllArticles extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.topic !== this.props.topic ||
-      prevState.topic !== this.props.topic ||
-      prevProps.sort_by !== this.props.sort_by
+      prevState.sort_by !== this.state.sort_by
     ) {
       this.getArticles(this.props.topic).then((articles) => {
         this.setState({
           articles: articles.parsedArticles,
           isLoading: false,
-          topic: this.props.topic,
         });
       });
     }
@@ -31,7 +29,8 @@ class AllArticles extends Component {
 
   getArticles = (props) => {
     // console.log(this.props);
-    const { topic, sort_by } = this.props;
+    const { topic } = this.props;
+    const { sort_by } = this.state;
     return api.getArticles(topic, sort_by);
   };
 
@@ -44,21 +43,25 @@ class AllArticles extends Component {
       <main>
         <section>
           Sort by:{" "}
-          <Link to={`/articles/${this.props.topic}/author`}>Author</Link>{" "}
-          <Link to={`/articles/${this.props.topic}/created_at`}>
-            Date-Created
-          </Link>{" "}
-          <Link to={`/articles/${this.props.topic}/comment_count`}>
+          <button onClick={() => this.handleClick("created_at")}>
             {" "}
-            Comments No.
-          </Link>{" "}
-          <Link to={`/articles/${this.props.topic}/votes`}> Votes</Link>{" "}
+            Published Date{" "}
+          </button>
+          <button onClick={() => this.handleClick("comment_count")}>
+            {" "}
+            Comment No.{" "}
+          </button>
+          <button onClick={() => this.handleClick("votes")}> Vote </button>
         </section>
         {/* {this.props.children} */}
         <ArticlesListCard articles={articles} />
       </main>
     );
   }
+
+  handleClick = (sort_by) => {
+    this.setState({ sort_by });
+  };
 }
 
 export default AllArticles;
