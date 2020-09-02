@@ -4,7 +4,7 @@ import CommentsCard from "./CommentsCard";
 import PostComment from "./PostComment";
 
 class ArticleComments extends Component {
-  state = { comments: [], isLoading: true };
+  state = { comments: [], isLoading: true, commentStatus: true };
 
   componentDidMount() {
     this.getArticleCommentsById(this.props.id).then((comments) => {
@@ -28,12 +28,13 @@ class ArticleComments extends Component {
       const updatedCommentsList = currentState.comments.filter(
         (comment) => comment.comment_id !== removedComment.comment_id
       );
-      return { comments: updatedCommentsList };
+      window.scrollTo(0, 0);
+      return { comments: updatedCommentsList, commentStatus: false };
     });
   };
 
   render() {
-    const { comments, isLoading } = this.state;
+    const { comments, isLoading, commentStatus } = this.state;
     if (isLoading) return <h4>Comments are loading!</h4>;
     // console.log(this.props.id);
     return (
@@ -45,6 +46,7 @@ class ArticleComments extends Component {
             user={this.props.user}
           ></PostComment>
         </React.Fragment>
+        {commentStatus === false && <h4>Comment has been removed!</h4>}
         <CommentsCard
           comments={comments}
           article_id={this.props.id}

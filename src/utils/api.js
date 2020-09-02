@@ -38,7 +38,7 @@ export const postComment = (bodyInput, article_id, user) => {
       body: bodyInput.value,
     })
     .then(({ data: { comment } }) => {
-      console.log(comment);
+      // console.log(comment);
       return comment;
     });
 };
@@ -52,7 +52,5 @@ export const patchVotes = (id, vote, type) => {
 };
 
 export const deleteComment = (comment_id) => {
-  return axiosInstance
-    .delete(`/comments/${comment_id}`)
-    .then((res) => console.log("Comment deleted"));
+  return axiosInstance.delete(`/comments/${comment_id}`);
 };

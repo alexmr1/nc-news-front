@@ -19,7 +19,7 @@ class PostComment extends Component {
             </p>
             <form onSubmit={this.handleSubmit}>
               <label className="commentBody" htmlFor="bodyInput">
-                Body:
+                Comment:
               </label>
               <input
                 onChange={this.handleChange}
@@ -43,11 +43,11 @@ class PostComment extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { bodyInput } = event.target;
+    console.dir(bodyInput);
     const { article_id, user } = this.props;
-
     api.postComment(bodyInput, article_id, user).then((comment) => {
       this.props.addComment(comment);
-      this.setState({ bodyInput: "" });
+      bodyInput.value = "";
     });
   };
 }

@@ -16,7 +16,7 @@ const CommentsCard = ({ comments, user, removeComment }) => {
       <ul key="commentsList" className="commentsList">
         {comments.map((comment) => {
           const { comment_id, votes } = comment;
-          console.log(user);
+          // console.log(user);
           return (
             <li key={comment.comment_id} className="indvComment">
               <h5>Comment:</h5>
