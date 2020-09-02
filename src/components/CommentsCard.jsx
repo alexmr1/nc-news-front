@@ -1,8 +1,9 @@
 import React from "react";
 import Voter from "./Voter";
 import * as api from "../utils/api";
+import DeleteWrapper from "./DeleteWrapper";
 
-const CommentsCard = ({ comments }) => {
+const CommentsCard = ({ comments, user }) => {
   // console.log(comments);
 
   const handleClickDelete = (comment_id, comment) => {
@@ -15,6 +16,7 @@ const CommentsCard = ({ comments }) => {
       <ul key="commentsList" className="commentsList">
         {comments.map((comment) => {
           const { comment_id, votes } = comment;
+          console.log(user);
           return (
             <li key={comment.comment_id} className="indvComment">
               <h5>Comment:</h5>
@@ -23,15 +25,22 @@ const CommentsCard = ({ comments }) => {
                 Author: {comment.author} Published: {comment.created_at} Votes:{" "}
                 {comment.votes}
               </p>
-              <Voter id={comment_id} votes={votes} type={"comments"} />
+              <>
+                {user ? (
+                  <Voter id={comment_id} votes={votes} type={"comments"} />
+                ) : (
+                  <p>Login to vote!</p>
+                )}
+              </>
               <br />
-              <button
-                onClick={() => handleClickDelete(comment_id, comment)}
-                disabled={comment.author !== "grumpy19"}
-              >
-                {" "}
-                Delete Comment
-              </button>
+              <DeleteWrapper user={user} commentUser={comment.author}>
+                <button
+                  onClick={() => handleClickDelete(comment_id, comment, user)}
+                >
+                  {" "}
+                  Delete Comment
+                </button>
+              </DeleteWrapper>
             </li>
           );
         })}

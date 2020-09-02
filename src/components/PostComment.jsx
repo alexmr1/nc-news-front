@@ -9,23 +9,30 @@ class PostComment extends Component {
   render() {
     return (
       <div>
-        <h5> Post a new comment!</h5>
-        <p>
-          You are currently logged in as: grumpy19. Please write your comment
-          below!
-        </p>
-        <form onSubmit={this.handleSubmit}>
-          <label className="commentBody" htmlFor="bodyInput">
-            Body:
-          </label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            id="bodyInput"
-            name="bodyInput"
-          />
-          <button type="submit"> Post Comment </button>
-        </form>
+        <h5> Want to post a new comment?</h5>
+        {this.props.user ? (
+          <>
+            <p>
+              {" "}
+              You are currently logged in as: {this.props.users}. Please write
+              your comment below!
+            </p>
+            <form onSubmit={this.handleSubmit}>
+              <label className="commentBody" htmlFor="bodyInput">
+                Body:
+              </label>
+              <input
+                onChange={this.handleChange}
+                type="text"
+                id="bodyInput"
+                name="bodyInput"
+              />
+              <button type="submit"> Post Comment </button>
+            </form>
+          </>
+        ) : (
+          <p> Please login to add a comment! </p>
+        )}
       </div>
     );
   }

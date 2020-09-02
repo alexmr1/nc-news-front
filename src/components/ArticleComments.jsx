@@ -33,9 +33,14 @@ class ArticleComments extends Component {
           <PostComment
             addComment={this.addComment}
             article_id={this.props.id}
+            user={this.props.user}
           ></PostComment>
         </React.Fragment>
-        <CommentsCard comments={comments} article_id={this.props.id} />
+        <CommentsCard
+          comments={comments}
+          article_id={this.props.id}
+          user={this.props.user}
+        />
       </div>
     );
   }

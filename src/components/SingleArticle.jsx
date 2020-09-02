@@ -29,12 +29,17 @@ class SingleArticle extends Component {
           <h3>{article.title}</h3>
           <h4>Author: {article.author}</h4>
           <p>{article.body}</p>
-          <h4>Votes: {article.votes}</h4>
-          <Voter
-            id={article.article_id}
-            votes={article.votes}
-            type={"articles"}
-          />
+          <React.Fragment>
+            {this.props.user ? (
+              <Voter
+                id={article.article_id}
+                votes={article.votes}
+                type={"articles"}
+              />
+            ) : (
+              <p>Login to vote!</p>
+            )}
+          </React.Fragment>
           <h5>
             {" "}
             Comments: {article.comments_count}{" "}

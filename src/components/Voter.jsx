@@ -11,10 +11,11 @@ class Voter extends Component {
     });
   };
   render() {
-    // const { votes } = this.props;
+    const { votes } = this.props;
     const { status } = this.state;
     return (
       <section>
+        <h4>Votes: {votes + this.state.optimisticVotes}</h4>
         <button
           onClick={(event) => {
             this.handleVote(1);
@@ -43,7 +44,6 @@ class Voter extends Component {
           </span>
           Nah!
         </button>
-        Likelihood: {this.state.status}
       </section>
     );
   }
