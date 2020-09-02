@@ -30,11 +30,11 @@ export const getArticleCommentsById = (id) => {
   });
 };
 
-export const postComment = (bodyInput, article_id) => {
-  console.log(article_id);
+export const postComment = (bodyInput, article_id, user) => {
+  // console.log(user);
   return axiosInstance
     .post(`articles/${article_id}/comments`, {
-      username: "grumpy19",
+      username: user,
       body: bodyInput.value,
     })
     .then(({ data: { comment } }) => {

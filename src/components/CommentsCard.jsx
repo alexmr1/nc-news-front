@@ -3,12 +3,12 @@ import Voter from "./Voter";
 import * as api from "../utils/api";
 import DeleteWrapper from "./DeleteWrapper";
 
-const CommentsCard = ({ comments, user }) => {
+const CommentsCard = ({ comments, user, removeComment }) => {
   // console.log(comments);
 
-  const handleClickDelete = (comment_id, comment) => {
-    if (comment.author === "grumpy19") api.deleteComment(comment_id);
-    else console.log("You cannot delete this comment!");
+  const handleClickDelete = (comment_id, comment, user) => {
+    if (comment.author === user) api.deleteComment(comment_id);
+    removeComment(comment);
   };
 
   return (
@@ -29,7 +29,7 @@ const CommentsCard = ({ comments, user }) => {
                 {user ? (
                   <Voter id={comment_id} votes={votes} type={"comments"} />
                 ) : (
-                  <p>Login to vote!</p>
+                  <h5>Login to vote!</h5>
                 )}
               </>
               <br />

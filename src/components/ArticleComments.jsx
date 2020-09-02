@@ -23,6 +23,15 @@ class ArticleComments extends Component {
     });
   };
 
+  removeComment = (removedComment) => {
+    this.setState((currentState) => {
+      const updatedCommentsList = currentState.comments.filter(
+        (comment) => comment.comment_id !== removedComment.comment_id
+      );
+      return { comments: updatedCommentsList };
+    });
+  };
+
   render() {
     const { comments, isLoading } = this.state;
     if (isLoading) return <h4>Comments are loading!</h4>;
@@ -40,6 +49,7 @@ class ArticleComments extends Component {
           comments={comments}
           article_id={this.props.id}
           user={this.props.user}
+          removeComment={this.removeComment}
         />
       </div>
     );

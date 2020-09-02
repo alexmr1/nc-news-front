@@ -14,7 +14,7 @@ class PostComment extends Component {
           <>
             <p>
               {" "}
-              You are currently logged in as: {this.props.users}. Please write
+              You are currently logged in as: {this.props.user}. Please write
               your comment below!
             </p>
             <form onSubmit={this.handleSubmit}>
@@ -43,9 +43,9 @@ class PostComment extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { bodyInput } = event.target;
-    const { article_id } = this.props;
+    const { article_id, user } = this.props;
 
-    api.postComment(bodyInput, article_id).then((comment) => {
+    api.postComment(bodyInput, article_id, user).then((comment) => {
       this.props.addComment(comment);
       this.setState({ bodyInput: "" });
     });

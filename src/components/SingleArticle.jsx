@@ -37,7 +37,7 @@ class SingleArticle extends Component {
                 type={"articles"}
               />
             ) : (
-              <p>Login to vote!</p>
+              <h5>Login to vote!</h5>
             )}
           </React.Fragment>
           <h5>
