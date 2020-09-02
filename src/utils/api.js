@@ -31,7 +31,7 @@ export const getArticleCommentsById = (id) => {
 };
 
 export const postComment = (bodyInput, article_id) => {
-  console.log(bodyInput.value);
+  console.log(article_id);
   return axiosInstance
     .post(`articles/${article_id}/comments`, {
       username: "grumpy19",
@@ -49,4 +49,10 @@ export const patchVotes = (id, vote, type) => {
   return axiosInstance
     .patch(`/${type}/${id}`, { inc_votes: vote })
     .then(({ data }) => console.log(data));
+};
+
+export const deleteComment = (comment_id) => {
+  return axiosInstance
+    .delete(`/comments/${comment_id}`)
+    .then((res) => console.log("Comment deleted"));
 };

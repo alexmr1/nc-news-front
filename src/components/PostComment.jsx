@@ -26,7 +26,6 @@ class PostComment extends Component {
           />
           <button type="submit"> Post Comment </button>
         </form>
-        {/* <button> Delete</button> */}
       </div>
     );
   }
@@ -38,6 +37,7 @@ class PostComment extends Component {
     event.preventDefault();
     const { bodyInput } = event.target;
     const { article_id } = this.props;
+
     api.postComment(bodyInput, article_id).then((comment) => {
       this.props.addComment(comment);
       this.setState({ bodyInput: "" });
