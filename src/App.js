@@ -7,6 +7,7 @@ import { Router } from "@reach/router";
 import AllArticles from "./components/AllArticles";
 import SingleArticle from "./components/SingleArticle";
 import ArticleComments from "./components/ArticleComments";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends React.Component {
   state = {
@@ -24,6 +25,11 @@ class App extends React.Component {
           <SingleArticle path="/article/:id" user={this.state.user}>
             <ArticleComments path="/comments" user={this.state.user} />
           </SingleArticle>
+          <ErrorPage
+            default
+            status={404}
+            msg={"Path not found! Check the input!"}
+          />
         </Router>
       </div>
     );

@@ -2,14 +2,25 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Link } from "@reach/router";
 import Voter from "./Voter";
+import ErrorPage from "./ErrorPage";
 
 class SingleArticle extends Component {
-  state = { article: [], isLoading: true, id: "" };
+  state = { article: [], isLoading: true, err: null };
 
   componentDidMount() {
-    this.getArticleById(this.props.id).then((article) => {
-      this.setState({ article, isLoading: false, id: this.props.id });
-    });
+    this.getArticleById(this.props.id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState(
+          {
+            isLoading: false,
+            err: { msg: response.data.msg, status: response.status },
+          },
+          () => console.log(response)
+        )
+      );
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -21,8 +32,9 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { article, isLoading } = this.state;
+    const { article, isLoading, err } = this.state;
     if (isLoading) return <h3> Article details are gathered!</h3>;
+    if (err) return <ErrorPage {...err} />;
     return (
       <div>
         <section className="singleArticle">

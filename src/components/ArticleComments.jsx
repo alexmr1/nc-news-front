@@ -2,14 +2,25 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import CommentsCard from "./CommentsCard";
 import PostComment from "./PostComment";
+import ErrorPage from "./ErrorPage";
 
 class ArticleComments extends Component {
-  state = { comments: [], isLoading: true, commentStatus: true };
+  state = { comments: [], isLoading: true, commentStatus: true, err: null };
 
   componentDidMount() {
-    this.getArticleCommentsById(this.props.id).then((comments) => {
-      this.setState({ comments, isLoading: false });
-    });
+    this.getArticleCommentsById(this.props.id)
+      .then((comments) => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState(
+          {
+            isLoading: false,
+            err: { msg: response.data.msg, status: response.status },
+          },
+          () => console.log(response)
+        )
+      );
   }
 
   getArticleCommentsById = (props) => {
@@ -34,9 +45,9 @@ class ArticleComments extends Component {
   };
 
   render() {
-    const { comments, isLoading, commentStatus } = this.state;
+    const { comments, isLoading, commentStatus, err } = this.state;
     if (isLoading) return <h4>Comments are loading!</h4>;
-    // console.log(this.props.id);
+    if (err) return <ErrorPage {...err} />;
     return (
       <div>
         <React.Fragment>

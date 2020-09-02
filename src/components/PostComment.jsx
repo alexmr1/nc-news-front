@@ -4,6 +4,7 @@ import * as api from "../utils/api";
 class PostComment extends Component {
   state = {
     bodyInput: "",
+    error: "",
   };
 
   render() {
@@ -38,13 +39,21 @@ class PostComment extends Component {
   }
   handleChange = (event) => {
     const { name, value } = event.target;
+    // value.length < 2
+    //   ? this.setState({ error: "Field cannot be empty!" }, () =>
+    //       console.log(this.state)
+    //     )
+    //   :
     this.setState({ [name]: value });
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { bodyInput } = event.target;
-    console.dir(bodyInput);
+    const { error } = this.state;
+    console.log(error);
     const { article_id, user } = this.props;
+    // error === "" &&
     api.postComment(bodyInput, article_id, user).then((comment) => {
       this.props.addComment(comment);
       bodyInput.value = "";

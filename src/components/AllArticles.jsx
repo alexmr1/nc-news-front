@@ -1,14 +1,25 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import ArticlesListCard from "./ArticlesListCard";
+import ErrorPage from "./ErrorPage";
 
 class AllArticles extends Component {
-  state = { articles: [], isLoading: true, sort_by: "created_at" };
+  state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
 
   componentDidMount() {
-    this.getArticles().then((articles) => {
-      this.setState({ articles: articles.parsedArticles, isLoading: false });
-    });
+    this.getArticles()
+      .then((articles) => {
+        this.setState({ articles: articles.parsedArticles, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState(
+          {
+            isLoading: false,
+            err: { msg: response.data.msg, status: response.status },
+          },
+          () => console.log(response)
+        )
+      );
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,10 +44,10 @@ class AllArticles extends Component {
   };
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, err } = this.state;
 
     if (isLoading) return <h3> Articles fetching in progress!</h3>;
-
+    if (err) return <ErrorPage {...err} />;
     return (
       <main>
         <section>
