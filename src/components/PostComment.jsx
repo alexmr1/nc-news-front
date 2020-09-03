@@ -13,10 +13,10 @@ class PostComment extends Component {
         <h5> Want to post a new comment?</h5>
         {this.props.user ? (
           <>
-            <p>
+            <p className="loginText">
               {" "}
-              You are currently logged in as: {this.props.user}. Please write
-              your comment below!
+              You are currently logged in as: <b>{this.props.user}</b>. Please
+              write your comment below!
             </p>
             <form onSubmit={this.handleSubmit}>
               <label className="commentBody" htmlFor="bodyInput">

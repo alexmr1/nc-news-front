@@ -12,18 +12,15 @@ class Voter extends Component {
   };
   render() {
     const { votes } = this.props;
-    const { status } = this.state;
+    const { optimisticVotes } = this.state;
     return (
       <section>
         <h4>Votes: {votes + this.state.optimisticVotes}</h4>
         <button
           onClick={(event) => {
             this.handleVote(1);
-            this.setState({ status: "Liked" });
           }}
-          // this.setState({ status: "Liked" });
-
-          disabled={status === "Liked"}
+          disabled={optimisticVotes === 1}
         >
           {" "}
           <span role="img" aria-label="smiley face">
@@ -34,9 +31,8 @@ class Voter extends Component {
         <button
           onClick={() => {
             this.handleVote(-1);
-            this.setState({ status: "Nah!" });
           }}
-          disabled={status === "Nah!"}
+          disabled={optimisticVotes === -1}
         >
           {" "}
           <span role="img" aria-label="hand with finger pointing down">

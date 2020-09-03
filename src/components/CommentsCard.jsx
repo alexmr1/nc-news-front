@@ -4,8 +4,6 @@ import * as api from "../utils/api";
 import DeleteWrapper from "./DeleteWrapper";
 
 const CommentsCard = ({ comments, user, removeComment }) => {
-  // console.log(comments);
-
   const handleClickDelete = (comment_id, comment, user) => {
     if (comment.author === user) api.deleteComment(comment_id);
     removeComment(comment);
@@ -16,14 +14,12 @@ const CommentsCard = ({ comments, user, removeComment }) => {
       <ul key="commentsList" className="commentsList">
         {comments.map((comment) => {
           const { comment_id, votes } = comment;
-          // console.log(user);
           return (
             <li key={comment.comment_id} className="indvComment">
               <h5>Comment:</h5>
               <p>{comment.body}</p>
               <p>
-                Author: {comment.author} Published: {comment.created_at} Votes:{" "}
-                {comment.votes}
+                Author: {comment.author} Published: {comment.created_at}
               </p>
               <>
                 {user ? (

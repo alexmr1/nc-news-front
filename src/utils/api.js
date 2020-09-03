@@ -31,24 +31,18 @@ export const getArticleCommentsById = (id) => {
 };
 
 export const postComment = (bodyInput, article_id, user) => {
-  // console.log(user);
   return axiosInstance
     .post(`articles/${article_id}/comments`, {
       username: user,
       body: bodyInput.value,
     })
     .then(({ data: { comment } }) => {
-      // console.log(comment);
       return comment;
     });
 };
 
 export const patchVotes = (id, vote, type) => {
-  // console.log(vote);
-  // console.log(id);
-  return axiosInstance
-    .patch(`/${type}/${id}`, { inc_votes: vote })
-    .then(({ data }) => console.log(data));
+  return axiosInstance.patch(`/${type}/${id}`, { inc_votes: vote });
 };
 
 export const deleteComment = (comment_id) => {

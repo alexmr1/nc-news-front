@@ -37,7 +37,6 @@ class AllArticles extends Component {
   }
 
   getArticles = (props) => {
-    // console.log(this.props);
     const { topic } = this.props;
     const { sort_by } = this.state;
     return api.getArticles(topic, sort_by);
@@ -74,7 +73,6 @@ class AllArticles extends Component {
             Vote{" "}
           </button>
         </section>
-        {/* {this.props.children} */}
         <ArticlesListCard articles={articles} />
       </main>
     );

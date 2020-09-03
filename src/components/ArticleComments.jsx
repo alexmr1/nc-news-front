@@ -39,7 +39,7 @@ class ArticleComments extends Component {
       const updatedCommentsList = currentState.comments.filter(
         (comment) => comment.comment_id !== removedComment.comment_id
       );
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 200);
       return { comments: updatedCommentsList, commentStatus: false };
     });
   };
