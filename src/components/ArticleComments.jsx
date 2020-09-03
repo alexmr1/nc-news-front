@@ -46,8 +46,16 @@ class ArticleComments extends Component {
       );
       return { comments: updatedCommentsList, commentStatus: false };
     });
-
     this.focusMethod();
+    this.commentTimer();
+  };
+
+  commentTimer = () => {
+    setTimeout(() => {
+      this.setState(() => {
+        return { commentStatus: true };
+      });
+    }, 2000);
   };
 
   focusMethod = () => {
