@@ -70,7 +70,7 @@ class AllArticles extends Component {
             onClick={() => this.handleClick("votes")}
           >
             {" "}
-            Vote{" "}
+            Votes{" "}
           </button>
         </section>
         <ArticlesListCard articles={articles} />
