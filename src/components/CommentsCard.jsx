@@ -31,6 +31,7 @@ const CommentsCard = ({ comments, user, removeComment }) => {
               <br />
               <DeleteWrapper user={user} commentUser={comment.author}>
                 <button
+                  className="deleteButton"
                   onClick={() => handleClickDelete(comment_id, comment, user)}
                 >
                   {" "}

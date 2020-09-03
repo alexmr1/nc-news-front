@@ -5,7 +5,12 @@ import PostComment from "./PostComment";
 import ErrorPage from "./ErrorPage";
 
 class ArticleComments extends Component {
-  state = { comments: [], isLoading: true, commentStatus: true, err: null };
+  state = {
+    comments: [],
+    isLoading: true,
+    commentStatus: true,
+    err: null,
+  };
 
   componentDidMount() {
     this.getArticleCommentsById(this.props.id)
@@ -39,9 +44,14 @@ class ArticleComments extends Component {
       const updatedCommentsList = currentState.comments.filter(
         (comment) => comment.comment_id !== removedComment.comment_id
       );
-      window.scrollTo(0, 200);
       return { comments: updatedCommentsList, commentStatus: false };
     });
+
+    this.focusMethod();
+  };
+
+  focusMethod = () => {
+    document.getElementById("postButton").focus();
   };
 
   render() {
