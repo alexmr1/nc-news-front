@@ -4,7 +4,7 @@ import * as api from "../utils/api";
 class PostComment extends Component {
   state = {
     bodyInput: "",
-    error: "",
+    bodyError: "",
   };
 
   render() {
@@ -28,6 +28,9 @@ class PostComment extends Component {
                 id="bodyInput"
                 name="bodyInput"
               />
+              <p style={{ fontSize: 12, color: "red" }}>
+                {this.state.bodyError}
+              </p>
               <button type="submit"> Post Comment </button>
             </form>
           </>
@@ -39,25 +42,36 @@ class PostComment extends Component {
   }
   handleChange = (event) => {
     const { name, value } = event.target;
-    // value.length < 2
-    //   ? this.setState({ error: "Field cannot be empty!" }, () =>
-    //       console.log(this.state)
-    //     )
-    //   :
     this.setState({ [name]: value });
+  };
+
+  validate = () => {
+    let bodyError = "";
+    if (!this.state.bodyInput) {
+      bodyError = "Comment cannot be blank";
+    }
+    if (bodyError) {
+      this.setState({ bodyError });
+      return false;
+    }
+    return true;
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { bodyInput } = event.target;
-    const { error } = this.state;
-    console.log(error);
     const { article_id, user } = this.props;
-    // error === "" &&
-    api.postComment(bodyInput, article_id, user).then((comment) => {
-      this.props.addComment(comment);
+    const isValid = this.validate();
+    if (isValid) {
+      api.postComment(bodyInput, article_id, user).then((comment) => {
+        this.props.addComment(comment);
+      });
       bodyInput.value = "";
-    });
+      this.setState({
+        bodyInput: "",
+        bodyError: "",
+      });
+    }
   };
 }
 
