@@ -10,7 +10,6 @@ class PostComment extends Component {
   render() {
     return (
       <div>
-        <h5> Want to post a new comment?</h5>
         {this.props.user ? (
           <>
             <p className="loginText">
@@ -20,7 +19,7 @@ class PostComment extends Component {
             </p>
             <form onSubmit={this.handleSubmit}>
               <label className="commentBody" htmlFor="bodyInput">
-                Comment:
+                Comment:{" "}
               </label>
               <input
                 onChange={this.handleChange}
@@ -30,14 +29,17 @@ class PostComment extends Component {
                 value={this.state.bodyInput}
               />
               <p className="postError">{this.state.bodyError}</p>
-              <button type="submit" id="postButton">
+              <button type="submit" className="postButton">
                 {" "}
                 Post Comment{" "}
               </button>
             </form>
           </>
         ) : (
-          <p> Please login to add a comment! </p>
+          <>
+            <h5> Want to post a new comment?</h5>
+            <p> Please login to add a comment! </p>
+          </>
         )}
       </div>
     );

@@ -24,10 +24,13 @@ export const getArticleById = (id) => {
   });
 };
 
-export const getArticleCommentsById = (id) => {
-  return axiosInstance.get(`articles/${id}/comments`).then((comments) => {
-    return comments.data.comments;
-  });
+export const getArticleCommentsById = (id, sort_by) => {
+  return axiosInstance
+    .get(`articles/${id}/comments`, { params: { sort_by } })
+    .then((comments) => {
+      console.log("clicked on sorting");
+      return comments.data.comments;
+    });
 };
 
 export const postComment = (bodyInput, article_id, user) => {

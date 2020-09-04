@@ -10,16 +10,22 @@ class ArticleComments extends Component {
     isLoading: true,
     commentStatus: true,
     err: null,
+    sort_by: "created_at",
   };
 
   componentDidMount() {
     this.getArticleCommentsById();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sort_by !== this.state.sort_by) this.getArticleCommentsById();
+  }
+
   getArticleCommentsById = (props) => {
     const { id } = this.props;
+    const { sort_by } = this.state;
     return api
-      .getArticleCommentsById(id)
+      .getArticleCommentsById(id, sort_by)
       .then((comments) => {
         this.setState({ comments, isLoading: false });
       })
@@ -74,6 +80,25 @@ class ArticleComments extends Component {
           ></PostComment>
         </React.Fragment>
         {commentStatus === false && <h4>Comment has been removed!</h4>}
+
+        <section>
+          <p>Show comments by: </p>
+          <button
+            className="sortButton"
+            onClick={() => this.handleClick("created_at")}
+          >
+            {" "}
+            Published Date{" "}
+          </button>
+          <button
+            className="sortButton"
+            onClick={() => this.handleClick("votes")}
+          >
+            {" "}
+            Votes{" "}
+          </button>
+        </section>
+
         <CommentsCard
           comments={comments}
           article_id={this.props.id}
@@ -83,6 +108,9 @@ class ArticleComments extends Component {
       </div>
     );
   }
+  handleClick = (sort_by) => {
+    this.setState({ sort_by });
+  };
 }
 
 export default ArticleComments;

@@ -46,10 +46,9 @@ ul {
     flex-direction: column;
     align-items: center;
   }
-  .sortButton {
-    font-size: 16px;
-  }
-  .topicButton {
+  .sortButton,
+  .topicButton,
+  .postButton {
     font-size: 16px;
   }
 }
