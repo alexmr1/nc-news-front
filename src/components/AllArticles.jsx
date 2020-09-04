@@ -7,39 +7,31 @@ class AllArticles extends Component {
   state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
 
   componentDidMount() {
-    this.getArticles()
-      .then((articles) => {
-        this.setState({ articles: articles.parsedArticles, isLoading: false });
-      })
-      .catch(({ response }) =>
-        this.setState(
-          {
-            isLoading: false,
-            err: { msg: response.data.msg, status: response.status },
-          },
-          () => console.log(response)
-        )
-      );
+    this.getArticles();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.topic !== this.props.topic ||
       prevState.sort_by !== this.state.sort_by
-    ) {
-      this.getArticles(this.props.topic).then((articles) => {
-        this.setState({
-          articles: articles.parsedArticles,
-          isLoading: false,
-        });
-      });
-    }
+    )
+      this.getArticles();
   }
 
   getArticles = (props) => {
     const { topic } = this.props;
     const { sort_by } = this.state;
-    return api.getArticles(topic, sort_by);
+    return api
+      .getArticles(topic, sort_by)
+      .then((articles) => {
+        this.setState({ articles: articles.parsedArticles, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState({
+          isLoading: false,
+          err: { msg: response.data.msg, status: response.status },
+        })
+      );
   };
 
   render() {

@@ -8,29 +8,32 @@ class SingleArticle extends Component {
   state = { article: [], isLoading: true, err: null };
 
   componentDidMount() {
-    this.getArticleById(this.props.id)
+    this.getArticleById();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.id !== this.props.id ||
+      prevState.article.votes !== this.state.article.votes
+    ) {
+      this.getArticleById();
+    }
+  }
+
+  getArticleById = (props) => {
+    const { id } = this.props;
+    return api
+      .getArticleById(id)
       .then((article) => {
         this.setState({ article, isLoading: false });
       })
       .catch(({ response }) =>
-        this.setState(
-          {
-            isLoading: false,
-            err: { msg: response.data.msg, status: response.status },
-          },
-          () => console.log(response)
-        )
+        this.setState({
+          isLoading: false,
+          err: { msg: response.data.msg, status: response.status },
+        })
       );
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.id !== this.props.id || prevState.id !== this.props.id) {
-      this.getArticleById(this.props.id).then((article) => {
-        this.setState({ article, isLoading: false, id: this.props.id });
-      });
-    }
-  }
-
+  };
   render() {
     const { article, isLoading, err } = this.state;
     if (isLoading) return <h3> Article details are gathered!</h3>;
@@ -64,11 +67,6 @@ class SingleArticle extends Component {
       </div>
     );
   }
-
-  getArticleById = (props) => {
-    const { id } = this.props;
-    return api.getArticleById(id);
-  };
 }
 
 export default SingleArticle;

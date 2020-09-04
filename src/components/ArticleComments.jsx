@@ -13,24 +13,22 @@ class ArticleComments extends Component {
   };
 
   componentDidMount() {
-    this.getArticleCommentsById(this.props.id)
-      .then((comments) => {
-        this.setState({ comments, isLoading: false });
-      })
-      .catch(({ response }) =>
-        this.setState(
-          {
-            isLoading: false,
-            err: { msg: response.data.msg, status: response.status },
-          },
-          () => console.log(response)
-        )
-      );
+    this.getArticleCommentsById();
   }
 
   getArticleCommentsById = (props) => {
     const { id } = this.props;
-    return api.getArticleCommentsById(id);
+    return api
+      .getArticleCommentsById(id)
+      .then((comments) => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch(({ response }) =>
+        this.setState({
+          isLoading: false,
+          err: { msg: response.data.msg, status: response.status },
+        })
+      );
   };
 
   addComment = (newComment) => {

@@ -4,18 +4,27 @@ import { Link } from "@reach/router";
 const ArticlesListCard = ({ articles }) => {
   return (
     <section>
-      <ul key="articlesList" className="articlesList">
+      <ul className="articlesList">
         {articles.map((article) => {
+          const {
+            title,
+            article_id,
+            author,
+            topic,
+            votes,
+            comment_count,
+            created_at,
+          } = article;
           return (
-            <li key={article.title} className="indArticle">
-              <Link to={`/article/${article.article_id}`}>
-                <h3>Title: {article.title} </h3>
+            <li key={title} className="indArticle">
+              <Link to={`/article/${article_id}`}>
+                <h3>Title: {title} </h3>
               </Link>
-              <h3>Author: {article.author}</h3>
-              <h4>Topic: {article.topic}</h4>
-              <h5>Votes: {article.votes}</h5>
-              <h5>Comment Count:{article.comment_count}</h5>
-              <h5>Created: {article.created_at}</h5>
+              <h3>Author: {author}</h3>
+              <h4>Topic: {topic}</h4>
+              <h5>Votes: {votes}</h5>
+              <h5>Comment Count:{comment_count}</h5>
+              <h5>Created: {created_at}</h5>
             </li>
           );
         })}

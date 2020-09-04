@@ -28,7 +28,7 @@ class App extends React.Component {
           <ErrorPage
             default
             status={404}
-            msg={"Path not found! Check the input!"}
+            msg={"Path not found! Check URL input!"}
           />
         </Router>
       </div>

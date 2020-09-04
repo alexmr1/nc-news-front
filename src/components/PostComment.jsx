@@ -27,6 +27,7 @@ class PostComment extends Component {
                 type="text"
                 id="bodyInput"
                 name="bodyInput"
+                value={this.state.bodyInput}
               />
               <p style={{ fontSize: 12, color: "red" }}>
                 {this.state.bodyError}
@@ -69,7 +70,6 @@ class PostComment extends Component {
       api.postComment(bodyInput, article_id, user).then((comment) => {
         this.props.addComment(comment);
       });
-      bodyInput.value = "";
       this.setState({
         bodyInput: "",
         bodyError: "",
