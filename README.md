@@ -20,11 +20,11 @@ The minimum version of Node required to run the project locally is v14.0.
 
 ## How to run the project locally
 
-1.  Clone the repository: `bash git clone https://github.com/alexmr1/nc-news-front.git ` .
+1.  Clone the repository: `git clone https://github.com/alexmr1/nc-news-front.git` .
 2.  cd nc-news-front
-3.  Run `bash npm install `
-4.  Install axios - `bash npm install axios`
-5.  Run `bash npm start` to view the project in your browser.
+3.  Run `npm install `
+4.  Install axios - ` npm install axios`
+5.  Run `npm start` to view the project in your browser.
 
 ## React App Info
 
