@@ -28,7 +28,6 @@ export const getArticleCommentsById = (id, sort_by) => {
   return axiosInstance
     .get(`articles/${id}/comments`, { params: { sort_by } })
     .then((comments) => {
-      console.log("clicked on sorting");
       return comments.data.comments;
     });
 };
