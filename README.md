@@ -1,3 +1,33 @@
+# Welcome to AMR News Project
+
+This app has been deployed on Netlify and you can access it using the following link: https://amr-news.netlify.app/.
+
+## Description
+
+AMR News is designed as a social news aggregation, web content rating and discussion website.
+
+AMR News presents a list of articles which are divided into topics. The articles can be filtered using several criteria: published date, comments number and number of votes. The default sorting order is descending. Each article has user curated ratings and it can be voted if the user is logged in.
+
+Users can add comments about an article and they can remove any comments which they added. Each comment can be up or down voted.
+
+### Backend
+
+The backend repo for this project can be found here: https://github.com/alexmr1/be-nc-news.git.
+
+### Node Version
+
+The minimum version of Node required to run the project locally is v14.0.
+
+## How to run the project locally
+
+1.  Clone the repository: <git clone https://github.com/alexmr1/nc-news-front.git > .
+2.  cd nc-news-front
+3.  Run npm install
+4.  Install axios - <npm install axios>
+5.  Run <npm start> to view the project in your browser.
+
+## React App Info
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
