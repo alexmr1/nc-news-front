@@ -29,9 +29,7 @@ class PostComment extends Component {
                 name="bodyInput"
                 value={this.state.bodyInput}
               />
-              <p style={{ fontSize: 12, color: "red" }}>
-                {this.state.bodyError}
-              </p>
+              <p className="postError">{this.state.bodyError}</p>
               <button type="submit" id="postButton">
                 {" "}
                 Post Comment{" "}

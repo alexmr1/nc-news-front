@@ -41,7 +41,7 @@ class AllArticles extends Component {
     if (err) return <ErrorPage {...err} />;
     return (
       <main>
-        <section>
+        <section className="sortButtonsList">
           Sort by:{" "}
           <button
             className="sortButton"

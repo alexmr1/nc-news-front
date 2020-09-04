@@ -8,17 +8,20 @@ ul {
 }
 
 .indArticle {
-  border: solid;
-  border-color: aquamarine;
+  border: solid black;
+  border-width: 0.05em;
+  background: rgba(168, 235, 242, 0.94);
   border-radius: 0.5em;
   text-align: left;
-  margin: 10px;
+  margin: 5px;
   padding-left: 10px;
   max-width: auto;
 }
+
 .topicButton {
+  font-size: 14px;
   border: solid;
-  border-width: 0.1em;
+  border-width: 0.05em;
   border-radius: 0.2em;
   border-color: black;
   text-align: center;
@@ -27,34 +30,46 @@ ul {
 }
 
 .sortButton {
+  font-size: 14px;
   border: solid;
-  border-width: 0.12em;
+  border-width: 0.1em;
   border-radius: 0.2em;
-  border-color: salmon;
+  border-color: rgb(249, 174, 166);
   text-align: center;
   margin: 5px;
   text-transform: capitalize;
 }
 
+@media only screen and (max-width: 450px) {
+  .sortButtonsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sortButton {
+    font-size: 16px;
+  }
+  .topicButton {
+    font-size: 16px;
+  }
+}
+
 .indvComment {
-  border: dotted;
-  border-color: rgb(51, 71, 223);
+  border: hidden;
+  background: rgba(213, 214, 215, 0.94);
   border-radius: 0.5em;
   text-align: left;
-  margin: 10px;
+  margin: 5px;
+  padding-top: 0.1em;
   padding-left: 10px;
   padding-bottom: 10px;
 }
 
-.singleArticle {
-  text-align: left;
-  border: solid black;
-  background: rgba(209, 230, 133, 0.94);
-  border-radius: 0.5em;
-  padding-left: 10px;
-  margin: 10px;
-}
-
 .loginText {
   padding: 10px;
+}
+
+.postError {
+  font-size: 16px;
+  color: red;
 }

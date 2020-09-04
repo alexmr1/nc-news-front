@@ -40,7 +40,7 @@ class SingleArticle extends Component {
     if (err) return <ErrorPage {...err} />;
     return (
       <div>
-        <section className="singleArticle">
+        <section className="indArticle">
           <h3>{article.title}</h3>
           <h4>Author: {article.author}</h4>
           <p>{article.body}</p>
