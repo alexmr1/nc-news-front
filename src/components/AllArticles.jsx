@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
 import ArticlesListCard from "./ArticlesListCard";
+import ReactPaginate from "react-paginate";
 import ErrorPage from "./ErrorPage";
 
 class AllArticles extends Component {
-  state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
+  state = {
+    articles: [],
+    isLoading: true,
+    sort_by: "created_at",
+    err: null,
+    offset: 0,
+    perPage: 3,
+    currentPage: 0,
+  };
+
+  // this.handlePageClick=this.handlePageClick.bind(this);
 
   componentDidMount() {
     this.getArticles();
@@ -20,11 +31,18 @@ class AllArticles extends Component {
 
   getArticles = (props) => {
     const { topic } = this.props;
-    const { sort_by } = this.state;
+    const { sort_by, offset, perPage } = this.state;
     return api
       .getArticles(topic, sort_by)
       .then((articles) => {
-        this.setState({ articles: articles.parsedArticles, isLoading: false });
+        const articlesData = articles.parsedArticles;
+        const slicedArticles = articlesData.slice(offset, offset + perPage);
+
+        this.setState({
+          articles: slicedArticles,
+          isLoading: false,
+          pageCount: Math.ceil(articlesData.length / perPage),
+        });
       })
       .catch(({ response }) =>
         this.setState({
@@ -32,6 +50,19 @@ class AllArticles extends Component {
           err: { msg: response.data.msg, status: response.status },
         })
       );
+  };
+
+  handlePageClick = (clickEvent) => {
+    const selectedPage = clickEvent.selected;
+    const offset = selectedPage * this.state.perPage;
+
+    this.setState(
+      {
+        currentPage: selectedPage,
+        offset: offset,
+      },
+      () => this.getArticles()
+    );
   };
 
   render() {
@@ -66,6 +97,21 @@ class AllArticles extends Component {
           </button>
         </section>
         <ArticlesListCard articles={articles} />
+        <div>
+          <ReactPaginate
+            previousLabel={"prev"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+          />
+        </div>
       </main>
     );
   }
